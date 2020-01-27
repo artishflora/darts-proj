@@ -54,16 +54,8 @@ int main()
 {
 	srand(time(0));
 	Player Joe;
-		Joe.numofthrows = 0,
-		Joe.avg10bulls = 0,
-		Joe.currbulls = 0,
-		Joe.numofwins = 0, 
 		Joe.setChance(71);
 	Player Sid;
-		Sid.numofthrows = 0,
-		Sid.avg10bulls = 0,
-		Sid.currbulls = 0,
-		Sid.numofwins = 0,
 		Sid.setChance(73);
 
 	for (int i = 0; i <= 10; i++)

@@ -2,6 +2,14 @@
 #include <ctime>​
 #include <iomanip>​
 
+Player::Player()
+{
+	numofthrows = 0;
+	numofwins = 0;
+	avg10bulls = 0;
+	currbulls = 0;
+}
+
 void Player::setChance(int newChance)
 {
 	chance = newChance;

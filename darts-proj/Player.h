@@ -9,11 +9,13 @@ class Player
 		int currbulls;
 		float avg10bulls;
 		int numofwins;
-	
-		void setChance(int);
-		int getChance();
+
+	//constr
+		Player();
 
 	//func
+		void setChance(int);
+		int getChance();
 		bool wincheck(Player&);
 		bool bullseye(int);
 };
