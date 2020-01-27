@@ -3,19 +3,10 @@
 #include <cstdlib>​
 #include <ctime>​
 #include <iomanip>​
+#include "Player.h"
 using namespace std;
 
-class Player
-{
-public:
-	int chance;
-	int numofthrows;
-	int currbulls;
-	float avg10bulls;
-	int numofwins;
-};
-
-bool bullseye(int playerchance)
+/*bool bullseye(int playerchance)
 {
 	bool hit;
 	int chance = rand() % 100 + 1;
@@ -23,22 +14,6 @@ bool bullseye(int playerchance)
 	else hit = true;
 	return hit;
 }
-void turn(Player& currplayer)
-{
-	for (int k = 0; k < 3; k++)
-	{
-		currplayer.numofthrows++;
-		bool hit;
-		if (bullseye(currplayer.chance))
-		{
-			hit = true;
-			currplayer.currbulls++;
-			if (currplayer.currbulls == 10) break;
-		}
-		else hit = false;
-	}
-}
-
 bool wincheck(Player& currplayer)
 {
 	if (currplayer.currbulls == 10)
@@ -51,6 +26,22 @@ bool wincheck(Player& currplayer)
 		return true;
 	}
 	else return false;
+}*/
+
+void turn(Player& currplayer)
+{
+	for (int k = 0; k < 3; k++)
+	{
+		currplayer.numofthrows++;
+		bool hit;
+		if (currplayer.bullseye(currplayer.getChance()))
+		{
+			hit = true;
+			currplayer.currbulls++;
+			if (currplayer.currbulls == 10) break;
+		}
+		else hit = false;
+	}
 }
 
 void round(Player& player1, Player& player2)
@@ -62,21 +53,21 @@ void round(Player& player1, Player& player2)
 int main()
 {
 	srand(time(0));
-	Player Joe = {
-	Joe.chance = 71,
-	Joe.numofthrows = 0,
-	Joe.avg10bulls = 0,
-	Joe.currbulls = 0
-	};
-	Player Sid = {
-	Sid.chance = 73,
-	Sid.numofthrows = 0,
-	Sid.avg10bulls = 0,
-	Sid.currbulls = 0
-	};
+	Player Joe;
+		Joe.numofthrows = 0,
+		Joe.avg10bulls = 0,
+		Joe.currbulls = 0,
+		Joe.numofwins = 0, 
+		Joe.setChance(71);
+	Player Sid;
+		Sid.numofthrows = 0,
+		Sid.avg10bulls = 0,
+		Sid.currbulls = 0,
+		Sid.numofwins = 0,
+		Sid.setChance(73);
+
 	for (int i = 0; i <= 10; i++)
 	{
-		//system("cls");​
 		int numofrounds = 0;
 		bool Joewin = false;
 		bool Sidwin = false;
@@ -89,8 +80,8 @@ int main()
 			if (starter == 1) round(Joe, Sid);
 			else if (starter == 2) round(Sid, Joe);
 			numofrounds++;
-			Joewin = wincheck(Joe);
-			Sidwin = wincheck(Sid);
+			Joewin = Joe.wincheck(Joe);
+			Sidwin = Sid.wincheck(Sid);
 		}
 		cout << "- - - - - - - - - - - -" << endl;
 		if (starter == 1)
