@@ -4,6 +4,7 @@
 #include <ctime>​
 #include <iomanip>​
 #include "Player.h"
+#include "Game.h"
 using namespace std;
 
 /*bool bullseye(int playerchance)
@@ -56,7 +57,7 @@ int main()
 	Player Joe;
 		Joe.setChance(71);
 	Player Sid;
-		Sid.setChance(73);
+		Sid.setChance(73); 
 
 	for (int i = 0; i <= 10; i++)
 	{
