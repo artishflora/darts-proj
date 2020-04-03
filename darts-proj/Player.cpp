@@ -4,12 +4,93 @@
 
 Player::Player()
 {
+	bullChance = 70;
+	numChance = 80;
 	numofthrows = 0;
-	numofwins = 0;
-	avg10bulls = 0;
 	currbulls = 0;
+	numofwins = 0;
+	remaining = 301;
 }
 
+Player::~Player()
+{
+
+}
+
+int Player::targetCalculator()
+{
+	return (getRemaining() - 50);
+}
+
+void Player::endOfCurrGame()
+{
+	numofthrows = 0;
+	currbulls = 0;
+	remaining = 301;
+}
+
+void Player::setBullChance(int chance)
+{
+	bullChance = chance;
+}
+
+int Player::getBullChance()
+{
+	return bullChance;
+}
+
+void Player::setNumChance(int chance)
+{
+	numChance = chance;
+}
+
+int Player::getNumChance()
+{
+	return numChance;
+}
+
+void Player::addThrow()
+{
+	numofthrows++;
+}
+
+int Player::getThrows()
+{
+	return numofthrows;
+}
+
+void Player::addBull()
+{
+	currbulls++;
+}
+
+int Player::getBulls()
+{
+	return currbulls;
+}
+
+void Player::addWin()
+{
+	numofwins++;
+}
+
+int Player::getWins()
+{
+	return numofwins;
+}
+
+void Player::refreshRemaining(int hit)
+{
+	remaining -= hit;
+}
+
+int Player::getRemaining()
+{
+	return remaining;
+}
+
+
+/*
 void Player::setChance(int newChance)
 {
 	chance = newChance;
@@ -41,4 +122,4 @@ bool Player::bullseye(int playerchance)
 	if (chance > playerchance) hit = false;
 	else hit = true;
 	return hit;
-}
+}*/

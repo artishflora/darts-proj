@@ -6,17 +6,24 @@
 class Brain
 {
 	private:
-		int numofrounds;
-		bool joeWin;
-		bool sidWin;
+		int numOfRounds;
 		int starter;
-		Player Joe;
-		Player Sid;
 		Game currGame;
+		Player* playerOne;
+		Player* playerTwo;
 
 	public:
 		Brain();
 		~Brain();
 
+	//functs
+		bool wincheck(Player& player);
+		void starterSetter(int starter, Player* pOne, Player* pTwo);
+		void winDeclarer();
+
+	//gettersetter
+		void incrRounds();
+		int getRounds();
+		Game* returnGame();
 };
 

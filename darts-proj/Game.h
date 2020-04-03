@@ -1,16 +1,22 @@
 #pragma once
 #include "Player.h"
+#include "Board.h"
 
 class Game
 {
 	private:
-		Player& Joe;
-		Player& Sid;
+		Player pOne;
+		Player pTwo;
+		Player* playerOne;
+		Player* playerTwo;
+		Board currBoard;
+
 	public:
 		Game();
 		~Game();
 
-		void turn(Player& currplayer);
-		void round(Player& player1, Player& player2);
+		void turn(Player* currPlayer);
+		void round();
+		void setPlayers(Player* one, Player* two);
 };
 
