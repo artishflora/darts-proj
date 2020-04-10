@@ -18,7 +18,7 @@ void Game::turn(Player* currPlayer)
 	int currturn = 0;
 	for (int k = 0; k < 3; k++)
 	{
-		std::cout << "Turn " << k+1 << ":" << std::endl;
+		//std::cout << "Turn " << k+1 << ":" << std::endl;
 
 		int hit = 0;
 		currPlayer->addThrow();
@@ -55,46 +55,26 @@ void Game::turn(Player* currPlayer)
 			}
 		}
 		currturn += hit;
-		std::cout << currPlayer->getName() << " hit the number " << hit << " !" << std::endl;
+		//std::cout << currPlayer->getName() << " hit the number " << hit << " !" << std::endl;
 		if (currPlayer->getRemaining() - currturn == 1 || currPlayer->getRemaining() - currturn < 0) break;
 		if (currPlayer->getRemaining() - currturn == 0) break;
-		/*if (currPlayer->getRemaining() >= 120)
-		{
-			int chance = rand() % 100 + 1;
-			if (chance <= currPlayer->getBullChance())
-			{
-				currPlayer->addBull();
-				currPlayer->refreshRemaining(50);
-
-				std::cout << "Player hit a bull!" << std::endl;
-				std::cout << "Their remaining points are: " << currPlayer->getRemaining() << std::endl;
-			}
-			else
-			{
-				hit = currBoard.bullMiss();
-				currPlayer->refreshRemaining(hit);
-
-				std::cout << "Player hit the number " << hit << " !" << std::endl;
-				std::cout << "Their remaining points are: " << currPlayer->getRemaining() << std::endl;
-			}
-		}*/
 	}
 	if (currPlayer->getRemaining()-currturn != 1 && currPlayer->getRemaining()-currturn > -1) currPlayer->refreshRemaining(currturn);
-	std::cout << "Their remaining points are: " << currPlayer->getRemaining() << std::endl;
-	if (currPlayer->getRemaining() == 0) std::cout << currPlayer->getName() << " won this game!" << std::endl;
+	//std::cout << "Their remaining points are: " << currPlayer->getRemaining() << std::endl;
+	//if (currPlayer->getRemaining() == 0) std::cout << currPlayer->getName() << " won this game!" << std::endl;
 }
 
 void Game::round()
 {
 	if (playerTwo->getRemaining() != 0) {
-		std::cout << std::endl;
-		std::cout << playerOne->getName() << "'s turn." << std::endl;
+		//std::cout << std::endl;
+		//std::cout << playerOne->getName() << "'s turn." << std::endl;
 
 		turn(playerOne);
 	}
 	if (playerOne->getRemaining() != 0) {
-		std::cout << std::endl;
-		std::cout << playerTwo->getName() <<"'s turn." << std::endl;
+		//std::cout << std::endl;
+		//std::cout << playerTwo->getName() <<"'s turn." << std::endl;
 
 		turn(playerTwo);
 	}

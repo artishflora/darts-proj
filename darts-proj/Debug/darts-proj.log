@@ -1,2 +1,7 @@
-﻿  Brain.cpp
+﻿  Source.cpp
+C:\Users\cherr\source\repos\darts-proj\darts-proj\Source.cpp(2,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
+C:\Users\cherr\source\repos\darts-proj\darts-proj\Source.cpp(3,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
+C:\Users\cherr\source\repos\darts-proj\darts-proj\Source.cpp(4,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
+C:\Users\cherr\source\repos\darts-proj\darts-proj\Source.cpp(5,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
+C:\Users\cherr\source\repos\darts-proj\darts-proj\Source.cpp(59,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   darts-proj.vcxproj -> C:\Users\cherr\source\repos\darts-proj\Debug\darts-proj.exe

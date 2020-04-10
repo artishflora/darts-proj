@@ -26,7 +26,6 @@ class Player
 		void endOfCurrGame();
 		void endOfBO5();
 		void endOfSet();
-		void resetBO5wins();
 
 	//gettersetter
 		void setBullChance(int chance);
