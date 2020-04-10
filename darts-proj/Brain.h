@@ -20,6 +20,9 @@ class Brain
 		bool wincheck(Player& player);
 		void starterSetter(int starter, Player* pOne, Player* pTwo);
 		void winDeclarer();
+		void BO5won();
+		void SETSwon();
+		void starterDeclarer();
 
 	//gettersetter
 		void incrRounds();

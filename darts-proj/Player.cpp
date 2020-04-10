@@ -5,11 +5,14 @@
 Player::Player()
 {
 	bullChance = 70;
-	numChance = 80;
+	trebleChance = 68;
+
 	numofthrows = 0;
 	currbulls = 0;
-	numofwins = 0;
-	remaining = 301;
+	numofBO5wins = 0;
+	numofSETwins = 0;
+	currwins = 0;
+	remaining = 501;
 }
 
 Player::~Player()
@@ -26,7 +29,24 @@ void Player::endOfCurrGame()
 {
 	numofthrows = 0;
 	currbulls = 0;
-	remaining = 301;
+	remaining = 501;
+}
+
+void Player::endOfBO5()
+{
+	numofthrows = 0;
+	currbulls = 0;
+	remaining = 501;
+	currwins = 0;
+}
+
+void Player::endOfSet()
+{
+	numofthrows = 0;
+	currbulls = 0;
+	remaining = 501;
+	currwins = 0;
+	numofBO5wins = 0;
 }
 
 void Player::setBullChance(int chance)
@@ -39,14 +59,14 @@ int Player::getBullChance()
 	return bullChance;
 }
 
-void Player::setNumChance(int chance)
+void Player::setTrebleChance(int chance)
 {
-	numChance = chance;
+	trebleChance = chance;
 }
 
-int Player::getNumChance()
+int Player::getTrebleChance()
 {
-	return numChance;
+	return trebleChance;
 }
 
 void Player::addThrow()
@@ -69,14 +89,34 @@ int Player::getBulls()
 	return currbulls;
 }
 
-void Player::addWin()
+void Player::addBO5Win()
 {
-	numofwins++;
+	numofBO5wins++;
 }
 
-int Player::getWins()
+int Player::getBO5Wins()
 {
-	return numofwins;
+	return numofBO5wins;
+}
+
+void Player::addSETWin()
+{
+	numofSETwins++;
+}
+
+int Player::getSETWins()
+{
+	return numofSETwins;
+}
+
+void Player::addCurrWin()
+{
+	currwins++;
+}
+
+int Player::getCurrWins()
+{
+	return currwins;
 }
 
 void Player::refreshRemaining(int hit)
@@ -89,37 +129,12 @@ int Player::getRemaining()
 	return remaining;
 }
 
-
-/*
-void Player::setChance(int newChance)
+void Player::setName(std::string _name)
 {
-	chance = newChance;
+	name = _name;
 }
 
-int Player::getChance()
+std::string Player::getName()
 {
-	return chance;
+	return name;
 }
-
-bool Player::wincheck(Player& currplayer)
-{
-	if (currplayer.currbulls == 10)
-	{
-		if (currplayer.avg10bulls != 0) {
-			currplayer.avg10bulls += currplayer.numofthrows;
-			currplayer.avg10bulls /= 2;
-		}
-		else currplayer.avg10bulls = currplayer.numofthrows;
-		return true;
-	}
-	else return false;
-}
-
-bool Player::bullseye(int playerchance)
-{
-	bool hit;
-	int chance = rand() % 100 + 1;
-	if (chance > playerchance) hit = false;
-	else hit = true;
-	return hit;
-}*/

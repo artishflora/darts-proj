@@ -57,27 +57,75 @@ void round(Player& player1, Player& player2)
 int main()
 {
 	srand(time(0));
-	Player Joe;
-		Joe.setBullChance(71);
-		Joe.setNumChance(80);
-	Player Sid;
-		Sid.setBullChance(73);
-		Sid.setNumChance(80);
+	Player playerOne;
+		playerOne.setBullChance(71);
+	Player playerTwo;
+		playerTwo.setBullChance(73);
 	Brain currBrain;
+
+	cout << "name player one: " << endl;
+	string name;
+	cin >> name;
+	playerOne.setName(name);
+	cout << "name player two: " << endl;
+	cin >> name;
+	playerTwo.setName(name);
+
+	bool starterset = false;
+	int starter = 1;
+	while (!starterset)
+	{
+		if (starter == 1) {
+			int hit = currBrain.returnGame()->throw_bull(playerOne.getBullChance());
+			if (hit == 50) starterset = true;
+		}
+		else {
+			int hit = currBrain.returnGame()->throw_bull(playerTwo.getBullChance());
+			if (hit == 50) starterset = true;
+		}
+		starter *= -1;
+	}
+	if (starter == 1) starter = 2;
+	else if (starter == -1) starter = 1;
+	currBrain.starterSetter(starter, &playerOne, &playerTwo);
 
 	char userinput;
 	do {
-		int starter = 0;
-		cout << "which one should start? joe 1, sid 2" << endl;
-		cin  >> starter;
-		currBrain.starterSetter(starter, &Joe, &Sid);
+		for (int setgames = 0; setgames < 13; setgames++)
+		{
+			for (int BO5games = 0; BO5games < 5; BO5games++)
+			{
+				cout << endl;
+				cout << "--------------------------------------------------------" << endl << endl;
+				currBrain.starterDeclarer();
 
-		do {
-			currBrain.returnGame()->round();
-		}while (!currBrain.wincheck(Joe) && !currBrain.wincheck(Sid));
-		currBrain.winDeclarer();
+				do {
+					currBrain.returnGame()->round();
+				} while (!currBrain.wincheck(playerOne) && !currBrain.wincheck(playerTwo));
+				currBrain.winDeclarer();
 
-		cout << "do u want to play another? y or n" << endl;
+				if (starter == 1) starter = 2;
+				else if (starter == 2) starter = 1;
+				currBrain.starterSetter(starter, &playerOne, &playerTwo);
+
+				if ((playerOne.getCurrWins() == 3) || (playerTwo.getCurrWins() == 3))
+				{
+					currBrain.BO5won();
+					break;
+				}
+			}
+			cout << endl;
+			cout << " |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl << endl;
+			if ((playerOne.getBO5Wins() == 7) || (playerTwo.getBO5Wins() == 7))
+			{
+				currBrain.SETSwon();
+				break;
+			}
+		}
+		cout << " ################################################################### " << endl << endl;
+
+		cout << "do u want to play another set of 13 matches? y or n" << endl;
 		cin >> userinput;
+		cout << endl;
 	} while (userinput != 'n');
 }
