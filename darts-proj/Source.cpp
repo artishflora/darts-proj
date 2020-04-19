@@ -76,8 +76,8 @@ int main()
 	cout << "name player two: " << endl;
 	cin >> name;
 	playerTwo.setName(name);
-
-	for (int k = 0; k < 10000; k++)
+	int gameno = 0;
+	for (int k = 0; k < 1; k++)
 	{
 		//cout << "Game no. " << k + 1 << ": ";
 		bool starterset = false;
@@ -107,7 +107,8 @@ int main()
 					//cout << endl;
 					//cout << "--------------------------------------------------------" << endl << endl;
 					//currBrain.starterDeclarer();
-
+					gameno++;
+					cout << "game no: " << gameno << endl;
 					do {
 						currBrain.returnGame()->round();
 					} while (!currBrain.wincheck(playerOne) && !currBrain.wincheck(playerTwo));

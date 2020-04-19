@@ -22,15 +22,66 @@ void Game::turn(Player* currPlayer)
 
 		int hit = 0;
 		currPlayer->addThrow();
-
-		if (currPlayer->getRemaining() >= 120) {
+		if (k == 2 && currPlayer->getRemaining() <= currBoard.getMaxThree() + 50)
+		{
+			int target = currBoard.fourThrow(currPlayer->getRemaining());
+			if (target > 20 && target != 50) {
+				if (target % 2 == 0) hit = throw_double(target / 2);
+				else if (target % 3 == 0) hit = throw_treble(target / 3, currPlayer->getTrebleChance());
+				else if (target == 25) hit = throw_single(25);
+			}
+			else if (target == 50) {
+				hit = throw_bull(currPlayer->getBullChance());
+				if (hit == 50) currPlayer->addBull();
+			}
+			else {
+				hit = throw_single(target);
+			}
+		}
+		else if (k == 0 && currPlayer->getRemaining() <= currBoard.getMaxThree())
+		{
+			int target = currBoard.threeThrow(currPlayer->getRemaining());
+			if (target > 20 && target != 50) {
+				if (target % 2 == 0) hit = throw_double(target / 2);
+				else if (target % 3 == 0) hit = throw_treble(target / 3, currPlayer->getTrebleChance());
+				else if (target == 25) hit = throw_single(25);
+			}
+			else if (target == 50) {
+				hit = throw_bull(currPlayer->getBullChance());
+				if (hit == 50) currPlayer->addBull();
+			}
+			else {
+				hit = throw_single(target);
+			}
+		}
+		else if (currPlayer->getRemaining() >= 120) {
 			hit = throw_treble(20, currPlayer->getTrebleChance());
+		}
+		else if (k == 1 && currPlayer->getRemaining() <= currBoard.getMaxTwo())
+		{
+			int target = currBoard.twoThrow(currPlayer->getRemaining());
+			if (target > 20 && target != 50) {
+				if (target % 2 == 0) hit = throw_double(target / 2);
+				else if (target % 3 == 0) hit = throw_treble(target / 3, currPlayer->getTrebleChance());
+				else if (target == 25) hit = throw_single(25);
+			}
+			else if (target == 50) {
+				hit = throw_bull(currPlayer->getBullChance());
+				if (hit == 50) currPlayer->addBull();
+			}
+			else {
+				hit = throw_single(target);
+			}
 		}
 		else if ((currPlayer->getRemaining() >= 100) || (currPlayer->getRemaining() == 50)) {
 			hit = throw_bull(currPlayer->getBullChance());
 			if (hit == 50) currPlayer->addBull();
 		}
-		else if (currPlayer->getRemaining() > 50) {
+		else if (currPlayer->getRemaining() == 74) {
+			hit = throw_treble(14, currPlayer->getTrebleChance());
+		}
+		else if (currPlayer->getRemaining() > 50)
+		{
 			int current = currPlayer->getRemaining() - 50;
 			if (current <= 20) {
 				hit = throw_single(current);
@@ -42,10 +93,17 @@ void Game::turn(Player* currPlayer)
 				hit = throw_treble(current / 3, currPlayer->getTrebleChance());
 			}
 		}
-		else if (currPlayer->getRemaining() > 0) {
+		else if (currPlayer->getRemaining() > 0)
+		{
 			if (currPlayer->getRemaining() > 40) {
 				int current = currPlayer->getRemaining() - 40;
 				hit = throw_single(current);
+			}
+			else if (currPlayer->getRemaining() == 40){
+				throw_double(20);
+			}
+			else if (currPlayer->getRemaining() == 32) {
+				throw_double(16);
 			}
 			else if (currPlayer->getRemaining() % 2 != 0) {
 				hit = throw_single(1);
@@ -59,7 +117,7 @@ void Game::turn(Player* currPlayer)
 		if (currPlayer->getRemaining() - currturn == 1 || currPlayer->getRemaining() - currturn < 0) break;
 		if (currPlayer->getRemaining() - currturn == 0) break;
 	}
-	if (currPlayer->getRemaining()-currturn != 1 && currPlayer->getRemaining()-currturn > -1) currPlayer->refreshRemaining(currturn);
+	if (currPlayer->getRemaining() - currturn != 1 && currPlayer->getRemaining() - currturn > -1) currPlayer->refreshRemaining(currturn);
 	//std::cout << "Their remaining points are: " << currPlayer->getRemaining() << std::endl;
 	//if (currPlayer->getRemaining() == 0) std::cout << currPlayer->getName() << " won this game!" << std::endl;
 }
