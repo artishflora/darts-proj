@@ -22,11 +22,8 @@ class Brain
 		void winDeclarer();
 		void BO5won();
 		void SETSwon();
-		void starterDeclarer();
 
 	//gettersetter
-		void incrRounds();
-		int getRounds();
 		Game* returnGame();
 };
 

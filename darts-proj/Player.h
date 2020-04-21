@@ -22,7 +22,6 @@ class Player
 		~Player();
 
 	//functions
-		int targetCalculator();
 		void endOfCurrGame();
 		void endOfBO5();
 		void endOfSet();
@@ -47,13 +46,5 @@ class Player
 		int getRemaining();
 		void setName(std::string _name);
 		std::string getName();
-
-/*
-	//func
-		void setChance(int);
-		int getChance();
-		bool wincheck(Player&);
-		bool bullseye(int);
-		*/
 };
 

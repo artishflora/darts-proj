@@ -4,15 +4,15 @@
 
 Player::Player()
 {
+	//setting up initial values
 	bullChance = 70;
 	trebleChance = 68;
 
-	numofthrows = 0;
-	currbulls = 0;
-	numofBO5wins = 0;
-	numofSETwins = 0;
-	currwins = 0;
-	remaining = 501;
+	currbulls = 0; //saving number of bulls in a 501 match by palyer
+	numofBO5wins = 0; //how many best of 5s the player has won in the current best of 13
+	numofSETwins = 0; // how many best of 13s the player has won
+	currwins = 0; // how many wins the player has in the current best of 5
+	remaining = 501; //score
 }
 
 Player::~Player()
@@ -20,21 +20,14 @@ Player::~Player()
 
 }
 
-int Player::targetCalculator()
-{
-	return (getRemaining() - 50);
-}
-
 void Player::endOfCurrGame()
 {
-	numofthrows = 0;
 	currbulls = 0;
 	remaining = 501;
 }
 
 void Player::endOfBO5()
 {
-	numofthrows = 0;
 	currbulls = 0;
 	remaining = 501;
 	currwins = 0;
